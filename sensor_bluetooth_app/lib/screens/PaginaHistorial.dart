@@ -27,7 +27,7 @@ class HistorialPedido {
 }
 
 class PaginaHistorial extends StatefulWidget {
-  const PaginaHistorial({Key? key}) : super(key: key);
+  const PaginaHistorial({super.key});
 
   @override
   State<PaginaHistorial> createState() => _PaginaHistorialState();
@@ -468,7 +468,7 @@ class _PaginaHistorialState extends State<PaginaHistorial> {
                                       ),
                                     ),
                                   );
-                                }).toList(),
+                                }),
                               ],
                             ),
                           );

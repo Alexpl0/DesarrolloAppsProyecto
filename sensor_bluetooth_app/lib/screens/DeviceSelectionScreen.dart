@@ -6,7 +6,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'SensorDataScreen.dart'; // Importa la pantalla donde se muestran los datos del sensor
 
 class DeviceSelectionScreen extends StatefulWidget {
-  const DeviceSelectionScreen({Key? key}) : super(key: key);
+  const DeviceSelectionScreen({super.key});
 
   @override
   _DeviceSelectionScreenState createState() => _DeviceSelectionScreenState();
@@ -14,7 +14,7 @@ class DeviceSelectionScreen extends StatefulWidget {
 
 class _DeviceSelectionScreenState extends State<DeviceSelectionScreen> {
   // Lista de dispositivos encontrados durante la búsqueda
-  List<BluetoothDiscoveryResult> _foundDevices = [];
+  final List<BluetoothDiscoveryResult> _foundDevices = [];
 
   // Bandera para indicar si está en proceso de búsqueda
   bool _isDiscovering = false;
@@ -131,8 +131,8 @@ class _DeviceSelectionScreenState extends State<DeviceSelectionScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: _startDiscovery,
         backgroundColor: const Color.fromARGB(255, 58, 173, 183),
-        child: const Icon(Icons.refresh),
         tooltip: 'Buscar dispositivos',
+        child: const Icon(Icons.refresh),
       ),
     );
   }

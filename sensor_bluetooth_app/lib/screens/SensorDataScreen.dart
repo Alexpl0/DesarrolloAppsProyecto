@@ -10,8 +10,7 @@ class SensorDataScreen extends StatefulWidget {
   // Recibe un objeto de conexión Bluetooth al instanciar esta pantalla
   final BluetoothConnection connection;
 
-  const SensorDataScreen({Key? key, required this.connection})
-    : super(key: key);
+  const SensorDataScreen({super.key, required this.connection});
 
   @override
   State<SensorDataScreen> createState() => _SensorDataScreenState();

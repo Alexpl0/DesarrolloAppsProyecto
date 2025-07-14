@@ -22,7 +22,7 @@ class Envio {
 }
 
 class PaginaHome extends StatefulWidget {
-  const PaginaHome({Key? key}) : super(key: key);
+  const PaginaHome({super.key});
 
   @override
   _PaginaHomeState createState() => _PaginaHomeState();
@@ -84,7 +84,7 @@ class _PaginaHomeState extends State<PaginaHome> {
 }
 
 class PaginaHomeContent extends StatefulWidget {
-  const PaginaHomeContent({Key? key}) : super(key: key);
+  const PaginaHomeContent({super.key});
 
   @override
   State<PaginaHomeContent> createState() => _PaginaHomeContentState();

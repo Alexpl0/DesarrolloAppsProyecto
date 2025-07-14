@@ -21,7 +21,7 @@ class EnvioStatus {
 }
 
 class PaginaStatus extends StatelessWidget {
-  const PaginaStatus({Key? key}) : super(key: key);
+  const PaginaStatus({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -21,7 +21,7 @@ class EnvioDetalle {
 
 // Pantalla que muestra los envíos organizados por tipo (Aéreo y Terrestre)
 class PaginaEnvios extends StatelessWidget {
-  const PaginaEnvios({Key? key}) : super(key: key);
+  const PaginaEnvios({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -119,7 +119,7 @@ class PaginaEnvios extends StatelessWidget {
             const SizedBox(height: 8),
             ...aereos
                 .map(_buildEnvioCard)
-                .toList(), // Generar tarjetas para los envíos aéreos
+                , // Generar tarjetas para los envíos aéreos
             const SizedBox(height: 20),
             const Text(
               'Terrestres 🚛',
@@ -128,7 +128,7 @@ class PaginaEnvios extends StatelessWidget {
             const SizedBox(height: 8),
             ...terrestres
                 .map(_buildEnvioCard)
-                .toList(), // Generar tarjetas para los envíos terrestres
+                , // Generar tarjetas para los envíos terrestres
           ],
         ),
       ),
