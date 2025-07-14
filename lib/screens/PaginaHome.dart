@@ -66,7 +66,7 @@ class _PaginaHomeState extends State<PaginaHome> {
     final localizations = AppLocalizations.of(context)!;
 
     // Lista de títulos ahora usa las traducciones
-    final List<String> _titulos = [
+    final List<String> titulos = [
       localizations.home,
       localizations.status,
       localizations.history,
@@ -74,7 +74,7 @@ class _PaginaHomeState extends State<PaginaHome> {
       localizations.sensors
     ];
 
-    final List<Color> _coloresAppBar = [
+    final List<Color> coloresAppBar = [
       Colors.lightBlueAccent,
       Colors.lightBlueAccent,
       Colors.lightBlueAccent,
@@ -84,8 +84,8 @@ class _PaginaHomeState extends State<PaginaHome> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(_titulos[_paginaActual]),
-        backgroundColor: _coloresAppBar[_paginaActual],
+        title: Text(titulos[_paginaActual]),
+        backgroundColor: coloresAppBar[_paginaActual],
         elevation: 2.0,
         // --- SELECTOR DE IDIOMA CENTRALIZADO ---
         actions: const [
@@ -374,11 +374,11 @@ class LanguageSwitcher extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return const Row(
       children: [
-        LanguageButton(locale: const Locale('es'), tooltip: 'Español'),
-        const SizedBox(width: 8),
-        LanguageButton(locale: const Locale('en'), tooltip: 'English'),
+        LanguageButton(locale: Locale('es'), tooltip: 'Español'),
+        SizedBox(width: 8),
+        LanguageButton(locale: Locale('en'), tooltip: 'English'),
       ],
     );
   }
