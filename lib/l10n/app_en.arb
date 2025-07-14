@@ -4,5 +4,51 @@
     "userHint": "User",
     "passwordHint": "Password",
     "loginButton": "Login",
-    "invalidCredentials": "Invalid credentials"
+    "invalidCredentials": "Invalid credentials",
+    "home": "Home",
+    "status": "Status",
+    "history": "History",
+    "shipments": "Shipments",
+    "sensors": "Sensors",
+    "admin": "Admin",
+    "lastUpdate": "Last update: {time}",
+    "@lastUpdate": {
+        "placeholders": {
+            "time": {
+                "type": "String",
+                "format": "jms"
+            }
+        }
+    },
+    "searchByProductOrOwner": "Search by product or owner",
+    "shipmentsSummary": "Shipments Summary",
+    "inTransit": "In Transit",
+    "delivered": "Delivered",
+    "orders": "Orders",
+    "reminderIn10s": "Reminder in 10s",
+    "reminderSet": "Reminder set for 10 seconds.",
+    "air": "Air ✈️",
+    "land": "Land 🚛",
+    "searchByOrderId": "Search by Order ID",
+    "noOrdersFound": "No orders found.",
+    "orderId": "Order ID: {id}",
+    "@orderId": {
+        "placeholders": {
+            "id": {
+                "type": "String"
+            }
+        }
+    },
+    "owner": "Owner: {name}",
+    "@owner": {
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "bluetoothDevices": "Bluetooth Devices",
+    "noDevicesFound": "No devices found",
+    "searchDevices": "Search devices",
+    "unnamedDevice": "Unnamed"
 }

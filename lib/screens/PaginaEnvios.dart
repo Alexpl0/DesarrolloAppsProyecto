@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart'; // Importamos las traducciones
 
 // Modelo de datos que representa un envío individual
 class EnvioDetalle {
@@ -25,80 +26,76 @@ class PaginaEnvios extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Obtenemos la instancia de las traducciones
+    final localizations = AppLocalizations.of(context)!;
+
     // Lista de todos los envíos con sus respectivos detalles
+    // NOTA: Los datos en sí mismos (como 'En vuelo') no se traducen aquí
+    // porque simulan venir de una base de datos. Solo se traduce la UI.
     final List<EnvioDetalle> envios = [
       EnvioDetalle(
-        id: '001',
-        producto: 'Vino Tinto',
-        tipo: 'Aéreo',
-        estado: 'En vuelo',
-        destino: 'Seattle, WA',
-        propietario: 'Carlos Pérez',
-      ),
+          id: '001',
+          producto: 'Vino Tinto',
+          tipo: 'Aéreo',
+          estado: 'En vuelo',
+          destino: 'Seattle, WA',
+          propietario: 'Carlos Pérez'),
       EnvioDetalle(
-        id: '002',
-        producto: 'Tequila',
-        tipo: 'Aéreo',
-        estado: 'Aterrizando',
-        destino: 'Los Ángeles, CA',
-        propietario: 'Ana Gómez',
-      ),
+          id: '002',
+          producto: 'Tequila',
+          tipo: 'Aéreo',
+          estado: 'Aterrizando',
+          destino: 'Los Ángeles, CA',
+          propietario: 'Ana Gómez'),
       EnvioDetalle(
-        id: '003',
-        producto: 'Whisky',
-        tipo: 'Aéreo',
-        estado: 'Despegue',
-        destino: 'Chicago, IL',
-        propietario: 'Luis Ramírez',
-      ),
+          id: '003',
+          producto: 'Whisky',
+          tipo: 'Aéreo',
+          estado: 'Despegue',
+          destino: 'Chicago, IL',
+          propietario: 'Luis Ramírez'),
       EnvioDetalle(
-        id: '005',
-        producto: 'Champagne',
-        tipo: 'Aéreo',
-        estado: 'Entregado',
-        destino: 'Houston, TX',
-        propietario: 'David Gómez',
-      ),
+          id: '005',
+          producto: 'Champagne',
+          tipo: 'Aéreo',
+          estado: 'Entregado',
+          destino: 'Houston, TX',
+          propietario: 'David Gómez'),
       EnvioDetalle(
-        id: '006',
-        producto: 'Ron',
-        tipo: 'Aéreo',
-        estado: 'En aeropuerto',
-        destino: 'San Francisco, CA',
-        propietario: 'Beatriz Luna',
-      ),
+          id: '006',
+          producto: 'Ron',
+          tipo: 'Aéreo',
+          estado: 'En aeropuerto',
+          destino: 'San Francisco, CA',
+          propietario: 'Beatriz Luna'),
       EnvioDetalle(
-        id: '007',
-        producto: 'Mezcal',
-        tipo: 'Terrestre',
-        estado: 'En almacén',
-        destino: 'Guadalajara, MX',
-        propietario: 'Fernando Cruz',
-      ),
+          id: '007',
+          producto: 'Mezcal',
+          tipo: 'Terrestre',
+          estado: 'En almacén',
+          destino: 'Guadalajara, MX',
+          propietario: 'Fernando Cruz'),
       EnvioDetalle(
-        id: '008',
-        producto: 'Vodka',
-        tipo: 'Terrestre',
-        estado: 'Entregado',
-        destino: 'Monterrey, MX',
-        propietario: 'Sofía Herrera',
-      ),
+          id: '008',
+          producto: 'Vodka',
+          tipo: 'Terrestre',
+          estado: 'Entregado',
+          destino: 'Monterrey, MX',
+          propietario: 'Sofía Herrera'),
       EnvioDetalle(
-        id: '009',
-        producto: 'Brandy',
-        tipo: 'Terrestre',
-        estado: 'En ruta',
-        destino: 'León, MX',
-        propietario: 'Emilio Vargas',
-      ),
+          id: '009',
+          producto: 'Brandy',
+          tipo: 'Terrestre',
+          estado: 'En ruta',
+          destino: 'León, MX',
+          propietario: 'Emilio Vargas'),
       EnvioDetalle(
-        id: '010',
-        producto: 'Ginebra',
-        tipo: 'Terrestre',
-        estado: 'Pendiente',
-        destino: 'Querétaro, MX',
-        propietario: 'Valeria Soto',
-      ),
+          id: '010',
+          producto: 'Ginebra',
+          tipo: 'Terrestre',
+          estado: 'Pendiente',
+          destino: 'Querétaro, MX',
+          propietario: 'Valeria Soto'),
     ];
 
     // Filtrar los envíos según el tipo
@@ -112,31 +109,30 @@ class PaginaEnvios extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Aéreos ✈️',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            // Usando la traducción para el título
+            Text(
+              localizations.air,
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
-            ...aereos
-                .map(_buildEnvioCard)
-                , // Generar tarjetas para los envíos aéreos
+            ...aereos.map((envio) => _buildEnvioCard(context, envio)),
             const SizedBox(height: 20),
-            const Text(
-              'Terrestres 🚛',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            // Usando la traducción para el título
+            Text(
+              localizations.land,
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
-            ...terrestres
-                .map(_buildEnvioCard)
-                , // Generar tarjetas para los envíos terrestres
+            ...terrestres.map((envio) => _buildEnvioCard(context, envio)),
           ],
         ),
       ),
     );
   }
 
-  // Método que construye la tarjeta de visualización de cada envío
-  Widget _buildEnvioCard(EnvioDetalle envio) {
+  // El método ahora recibe el BuildContext para acceder a las traducciones
+  Widget _buildEnvioCard(BuildContext context, EnvioDetalle envio) {
+    final localizations = AppLocalizations.of(context)!;
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       elevation: 4,
@@ -149,13 +145,12 @@ class PaginaEnvios extends StatelessWidget {
             Row(
               children: [
                 Icon(
-                  // Icono diferente según el tipo de envío
                   envio.tipo == 'Aéreo' ? Icons.flight : Icons.local_shipping,
                   color: envio.tipo == 'Aéreo' ? Colors.blue : Colors.brown,
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  '${envio.producto} (${envio.tipo})', // Producto y tipo de transporte
+                  '${envio.producto} (${envio.tipo})',
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
@@ -165,7 +160,8 @@ class PaginaEnvios extends StatelessWidget {
             ),
             const SizedBox(height: 6),
             Text('ID: ${envio.id}'),
-            Text('Propietario: ${envio.propietario}'),
+            // Usando la traducción para "Propietario"
+            Text(localizations.owner(envio.propietario)),
             Text('Estado: ${envio.estado}'),
             Text('Destino: ${envio.destino}'),
           ],

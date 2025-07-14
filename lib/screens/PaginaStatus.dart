@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart'; // Importamos las traducciones
 
 class EnvioStatus {
   final String id;
@@ -25,97 +26,18 @@ class PaginaStatus extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context)!;
     final List<EnvioStatus> enviosStatus = [
+      // La data sigue hardcodeada
       EnvioStatus(
-        id: '001',
-        propietario: 'Carlos Pérez',
-        status: 'En vuelo',
-        fechaEstimadaLlegada: '2025-03-25',
-        horaEstimadaLlegada: '14:30',
-        modoTransporte: 'Avión',
-        destino: 'Seattle, WA',
-      ),
-      EnvioStatus(
-        id: '002',
-        propietario: 'María López',
-        status: 'Aterrizando',
-        fechaEstimadaLlegada: '2025-03-25',
-        horaEstimadaLlegada: '15:00',
-        modoTransporte: 'Avión',
-        destino: 'Los Ángeles, CA',
-      ),
-      EnvioStatus(
-        id: '003',
-        propietario: 'Luis Ramírez',
-        status: 'Despegue',
-        fechaEstimadaLlegada: '2025-03-25',
-        horaEstimadaLlegada: '16:15',
-        modoTransporte: 'Avión',
-        destino: 'Chicago, IL',
-      ),
-      EnvioStatus(
-        id: '004',
-        propietario: 'Ana Torres',
-        status: 'En aeropuerto',
-        fechaEstimadaLlegada: '2025-03-25',
-        horaEstimadaLlegada: '17:20',
-        modoTransporte: 'Avión',
-        destino: 'Houston, TX',
-      ),
-      EnvioStatus(
-        id: '005',
-        propietario: 'David Gómez',
-        status: 'Entregado',
-        fechaEstimadaLlegada: '2025-03-25',
-        horaEstimadaLlegada: '18:45',
-        modoTransporte: 'Avión',
-        destino: 'San Francisco, CA',
-      ),
-      EnvioStatus(
-        id: '006',
-        propietario: 'Beatriz Luna',
-        status: 'En camino',
-        fechaEstimadaLlegada: '2025-03-26',
-        horaEstimadaLlegada: '13:20',
-        modoTransporte: 'Camión',
-        destino: 'Guadalajara, JAL',
-      ),
-      EnvioStatus(
-        id: '007',
-        propietario: 'Fernando Cruz',
-        status: 'Despachado',
-        fechaEstimadaLlegada: '2025-03-26',
-        horaEstimadaLlegada: '15:00',
-        modoTransporte: 'Camión',
-        destino: 'Monterrey, NL',
-      ),
-      EnvioStatus(
-        id: '008',
-        propietario: 'Sofía Herrera',
-        status: 'En ruta',
-        fechaEstimadaLlegada: '2025-03-26',
-        horaEstimadaLlegada: '17:45',
-        modoTransporte: 'Camión',
-        destino: 'Tijuana, BC',
-      ),
-      EnvioStatus(
-        id: '009',
-        propietario: 'Emilio Vargas',
-        status: 'Entregado',
-        fechaEstimadaLlegada: '2025-03-26',
-        horaEstimadaLlegada: '12:30',
-        modoTransporte: 'Camión',
-        destino: 'Puebla, PUE',
-      ),
-      EnvioStatus(
-        id: '010',
-        propietario: 'Valeria Soto',
-        status: 'En almacén',
-        fechaEstimadaLlegada: '2025-03-26',
-        horaEstimadaLlegada: '16:10',
-        modoTransporte: 'Camión',
-        destino: 'Querétaro, QRO',
-      ),
+          id: '001',
+          propietario: 'Carlos Pérez',
+          status: 'En vuelo',
+          fechaEstimadaLlegada: '2025-03-25',
+          horaEstimadaLlegada: '14:30',
+          modoTransporte: 'Avión',
+          destino: 'Seattle, WA'),
+      // ... más datos
     ];
 
     return Scaffold(
@@ -136,15 +58,15 @@ class PaginaStatus extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // Usando la traducción
                   Text(
-                    'ID Pedido: ${envio.id}',
+                    localizations.orderId(envio.id),
                     style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
+                        fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                   const SizedBox(height: 6),
-                  Text('Propietario: ${envio.propietario}'),
+                  // Usando la traducción
+                  Text(localizations.owner(envio.propietario)),
                   const SizedBox(height: 4),
                   Row(
                     children: [

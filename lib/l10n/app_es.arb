@@ -4,5 +4,51 @@
     "userHint": "Usuario",
     "passwordHint": "Contraseña",
     "loginButton": "Entrar",
-    "invalidCredentials": "Credenciales no válidas"
+    "invalidCredentials": "Credenciales no válidas",
+    "home": "Inicio",
+    "status": "Estado",
+    "history": "Historial",
+    "shipments": "Envíos",
+    "sensors": "Sensores",
+    "admin": "Admin",
+    "lastUpdate": "Última actualización: {time}",
+    "@lastUpdate": {
+        "placeholders": {
+            "time": {
+                "type": "String",
+                "format": "jms"
+            }
+        }
+    },
+    "searchByProductOrOwner": "Buscar por producto o propietario",
+    "shipmentsSummary": "Resumen de envíos",
+    "inTransit": "En tránsito",
+    "delivered": "Entregados",
+    "orders": "Pedidos",
+    "reminderIn10s": "Recordatorio en 10s",
+    "reminderSet": "Recordatorio programado en 10 segundos.",
+    "air": "Aéreos ✈️",
+    "land": "Terrestres 🚛",
+    "searchByOrderId": "Buscar por ID de Pedido",
+    "noOrdersFound": "No se encontraron pedidos.",
+    "orderId": "ID Pedido: {id}",
+    "@orderId": {
+        "placeholders": {
+            "id": {
+                "type": "String"
+            }
+        }
+    },
+    "owner": "Propietario: {name}",
+    "@owner": {
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "bluetoothDevices": "Dispositivos Bluetooth",
+    "noDevicesFound": "No se encontraron dispositivos",
+    "searchDevices": "Buscar dispositivos",
+    "unnamedDevice": "Sin nombre"
 }

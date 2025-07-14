@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:sensor_bluetooth_app/main.dart'; // Importamos AppState
 import 'package:sensor_bluetooth_app/utils/assets.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart'; // Importa las traducciones generadas
+import 'package:flutter_gen/gen_l10n/app_localizations.dart'; // Importa las traducciones
 
 // Pantalla principal de Login
 class Login extends StatefulWidget {
@@ -25,10 +23,7 @@ class _LoginState extends State<Login> {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          // 1. Imagen de fondo
           Image.asset(Assets.login, fit: BoxFit.cover),
-
-          // 2. Formulario centrado
           Center(
             child: SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -89,27 +84,6 @@ class _LoginState extends State<Login> {
               ),
             ),
           ),
-
-          // --- CORRECCIÓN ---
-          // 3. Botones de idioma en la esquina superior derecha
-          // Usamos Positioned para anclar el widget a una posición específica del Stack.
-          // Se dibuja al final para que quede por encima de los demás elementos.
-          Positioned(
-            top: 40, // Espacio desde el borde superior
-            right: 16, // Espacio desde el borde derecho
-            child: SafeArea(
-              // Se mantiene para evitar el notch en móviles
-              child: Row(
-                children: [
-                  LanguageButton(
-                      locale: const Locale('es'), tooltip: 'Español'),
-                  const SizedBox(width: 8),
-                  LanguageButton(
-                      locale: const Locale('en'), tooltip: 'English'),
-                ],
-              ),
-            ),
-          ),
         ],
       ),
     );
@@ -133,50 +107,6 @@ class _LoginState extends State<Login> {
           vertical: 12,
         ),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
-      ),
-    );
-  }
-}
-
-// --- WIDGET ANIMADO PARA EL BOTÓN DE IDIOMA ---
-class LanguageButton extends StatelessWidget {
-  final Locale locale;
-  final String tooltip;
-
-  const LanguageButton(
-      {super.key, required this.locale, required this.tooltip});
-
-  @override
-  Widget build(BuildContext context) {
-    final appState = Provider.of<AppState>(context);
-    final bool isSelected = appState.appLocale == locale;
-
-    return Tooltip(
-      message: tooltip,
-      child: GestureDetector(
-        onTap: () {
-          // Usamos el Provider para cambiar el idioma
-          Provider.of<AppState>(context, listen: false).changeLocale(locale);
-        },
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
-          padding: const EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            color: isSelected
-                ? Colors.white.withOpacity(0.9)
-                : Colors.white.withOpacity(0.4),
-            shape: BoxShape.circle,
-            border:
-                isSelected ? Border.all(color: Colors.blue, width: 2) : null,
-          ),
-          child: Text(
-            locale.languageCode.toUpperCase(),
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: isSelected ? Colors.blue : Colors.black,
-            ),
-          ),
-        ),
       ),
     );
   }
