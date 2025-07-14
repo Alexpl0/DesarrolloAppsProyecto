@@ -1,55 +1,59 @@
-# To learn more about how to use Nix to configure your environment
-# see: https://firebase.google.com/docs/studio/customize-workspace
+# Para aprender más sobre cómo usar Nix para configurar tu entorno
+# visita: https://firebase.google.com/docs/studio/customize-workspace
 { pkgs, ... }: {
-  # Which nixpkgs channel to use.
-  channel = "stable-24.05"; # or "unstable"
+  # Qué canal de nixpkgs usar.
+  channel = "stable-24.05"; # o "unstable"
 
-  # Use https://search.nixos.org/packages to find packages
+  # Usa https://search.nixos.org/packages para encontrar paquetes
   packages = [
-    # pkgs.go
-    # pkgs.python311
-    # pkgs.python311Packages.pip
-    # pkgs.nodejs_20
-    # pkgs.nodePackages.nodemon
+    # Agregamos el SDK de Flutter para que esté disponible en el entorno
+    pkgs.flutter
+    # --- SOLUCIÓN ---
+    # Se añade el JDK (Java Development Kit) a los paquetes del entorno.
+    # Gradle lo necesita para compilar la app de Android.
+    pkgs.jdk17
   ];
 
-  # Sets environment variables in the workspace
-  env = {};
+  # Establece variables de entorno en el espacio de trabajo
+  env = {
+    # --- SOLUCIÓN ---
+    # Se establece la variable de entorno JAVA_HOME para que apunte
+    # a la ubicación del JDK que acabamos de instalar.
+    JAVA_HOME = "${pkgs.jdk17}/";
+  };
+  
   idx = {
-    # Search for the extensions you want on https://open-vsx.org/ and use "publisher.id"
+    # Busca las extensiones que quieras en https://open-vsx.org/ y usa "publisher.id"
     extensions = [
-      # "vscodevim.vim"
+      "dart-code.flutter"
+      "dart-code.dart-code"
     ];
 
-    # Enable previews
+    # Habilitar vistas previas
     previews = {
       enable = true;
       previews = {
-        # web = {
-        #   # Example: run "npm run dev" with PORT set to IDX's defined port for previews,
-        #   # and show it in IDX's web preview panel
-        #   command = ["npm" "run" "dev"];
-        #   manager = "web";
-        #   env = {
-        #     # Environment variables to set for your server
-        #     PORT = "$PORT";
-        #   };
-        # };
+        # Configuración para el emulador de Android.
+        android = {
+          manager = "android";
+        };
+        
+        # Vista previa web - Usando web-server para IDX (no requiere Chrome)
+        web = {
+          command = ["flutter" "run" "-d" "web-server" "--web-port" "$PORT"];
+          manager = "web";
+        };
       };
     };
 
-    # Workspace lifecycle hooks
+    # Hooks del ciclo de vida del espacio de trabajo
     workspace = {
-      # Runs when a workspace is first created
+      # Se ejecuta cuando se crea un espacio de trabajo por primera vez
       onCreate = {
-        # Example: install JS dependencies from NPM
-        # npm-install = "npm install";
+        get-flutter-deps = "flutter pub get";
       };
-      # Runs when the workspace is (re)started
-      onStart = {
-        # Example: start a background task to watch and re-build backend code
-        # watch-backend = "npm run watch-backend";
-      };
+      # Se ejecuta cuando el espacio de trabajo se (re)inicia
+      onStart = {};
     };
   };
 }

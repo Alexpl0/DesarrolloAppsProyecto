@@ -1,0 +1,44 @@
+name: sensor_bluetooth_app
+description: "Una aplicación para rastreo de envíos y monitoreo de sensores con Flutter."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # --- REQUERIDO PARA i18n ---
+  flutter_localizations:
+    sdk: flutter
+  # --- CORRECCIÓN DE VERSIÓN ---
+  # Se ajusta la versión de intl a la que es compatible con flutter_localizations
+  intl: ^0.19.0
+
+  # Paquetes para los requisitos del 2° Parcial
+  provider: ^6.1.1
+  shared_preferences: ^2.2.2
+  flutter_local_notifications: ^16.3.2
+  flutter_bluetooth_serial: ^0.4.0
+  permission_handler: ^11.3.0
+
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  # --- HABILITAR GENERACIÓN DE CÓDIGO ---
+  # Esta línea es crucial para que Flutter genere automáticamente el
+  # archivo app_localizations.dart a partir de tus archivos .arb
+  generate: true
+
+  uses-material-design: true
+
+  assets:
+    - assets/images/

@@ -1,0 +1,8 @@
+{
+    "@@locale": "es",
+    "welcomeMessage": "BIENVENIDO",
+    "userHint": "Usuario",
+    "passwordHint": "Contraseña",
+    "loginButton": "Entrar",
+    "invalidCredentials": "Credenciales no válidas"
+}

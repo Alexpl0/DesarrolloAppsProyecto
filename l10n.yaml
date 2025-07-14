@@ -1,0 +1,11 @@
+# Este archivo le dice a la herramienta de Flutter dónde encontrar los archivos de traducción
+# y dónde generar el código Dart correspondiente.
+
+# Archivo de plantilla que contiene los IDs de los textos.
+template-arb-file: app_es.arb
+
+# Archivo Dart que se generará con las traducciones.
+output-localization-file: app_localizations.dart
+
+# Opcional: Nombre de la clase que se generará.
+output-class: AppLocalizations
