@@ -1,10 +1,12 @@
-// Punto de entrada principal de la aplicación Flutter
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart'; // Importa las traducciones generadas
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-// Se ajustan las rutas de importación para ser relativas a la carpeta 'lib'.
+// Importamos nuestros servicios
+import 'services/preferences_service.dart';
+import 'services/notification_service.dart'; // Importamos el servicio de notificaciones
+
 import 'screens/PaginaEnvios.dart';
 import 'screens/PaginaHistorial.dart';
 import 'screens/PaginaHome.dart';
@@ -12,31 +14,43 @@ import 'screens/PaginaStatus.dart';
 import 'login/login.dart';
 import 'screens/DeviceSelectionScreen.dart';
 
-// Proveedor de estado para manejar el idioma de la app.
 class AppState extends ChangeNotifier {
-  Locale _appLocale = const Locale('es');
+  final PreferencesService _preferencesService;
+  late Locale _appLocale;
+
+  AppState(this._preferencesService, this._appLocale);
+
   Locale get appLocale => _appLocale;
 
-  void changeLocale(Locale newLocale) {
+  Future<void> changeLocale(Locale newLocale) async {
     if (_appLocale == newLocale) return;
     _appLocale = newLocale;
     notifyListeners();
+    await _preferencesService.saveLanguage(newLocale.languageCode);
   }
 }
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  final preferencesService = PreferencesService();
+  final initialLocale = await preferencesService.loadLanguage();
+
+  // --- INICIALIZAR SERVICIO DE NOTIFICACIONES ---
+  await NotificationService().init();
+
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => AppState()),
+        ChangeNotifierProvider(
+          create: (_) => AppState(preferencesService, initialLocale),
+        ),
       ],
       child: const RastreoSensorApp(),
     ),
   );
 }
 
-// Widget principal que configura la aplicación completa
 class RastreoSensorApp extends StatelessWidget {
   const RastreoSensorApp({super.key});
 
@@ -47,22 +61,17 @@ class RastreoSensorApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Rastreo + Sensores',
-
-      // --- CONFIGURACIÓN PARA INTERNACIONALIZACIÓN (i18n) ---
       locale: appState.appLocale,
       supportedLocales: const [
-        Locale('es', ''), // Español
-        Locale('en', ''), // Inglés
+        Locale('es', ''),
+        Locale('en', ''),
       ],
       localizationsDelegates: const [
-        // --- DELEGADO DE NUESTRAS TRADUCCIONES ---
         AppLocalizations.delegate,
-        // Delegados para los widgets de Flutter
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color.fromARGB(
@@ -75,7 +84,6 @@ class RastreoSensorApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.grey[100],
         useMaterial3: true,
       ),
-
       initialRoute: '/',
       routes: {
         '/': (context) => const Login(),
