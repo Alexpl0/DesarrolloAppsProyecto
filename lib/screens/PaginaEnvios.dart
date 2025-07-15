@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart'; // Importamos las traducciones
+import 'package:sensor_bluetooth_app/l10n/app_localizations.dart'
+    show AppLocalizations;
+//import 'package:flutter_gen/gen_l10n/app_localizations.dart'; // Importamos las traducciones
 
 // Modelo de datos que representa un envío individual
 class EnvioDetalle {

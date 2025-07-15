@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:sensor_bluetooth_app/l10n/app_localizations.dart'
+    show AppLocalizations;
 import 'package:sensor_bluetooth_app/utils/assets.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart'; // Importa las traducciones
+//import 'package:flutter_gen/gen_l10n/app_localizations.dart'; // Importa las traducciones
 
 // Pantalla principal de Login
 class Login extends StatefulWidget {

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart'; // Importamos las traducciones
+import 'package:sensor_bluetooth_app/l10n/app_localizations.dart'
+    show AppLocalizations;
+//import 'package:flutter_gen/gen_l10n/app_localizations.dart'; // Importamos las traducciones
 
 class Checkpoint {
   final String nombre;
@@ -38,8 +40,20 @@ class _PaginaHistorialState extends State<PaginaHistorial> {
   final TextEditingController _searchController = TextEditingController();
   List<HistorialPedido> historialPedidos = [
     // La data sigue hardcodeada
-    HistorialPedido(id: '001', propietario: 'Carlos Pérez', checkpoints: [ Checkpoint(nombre: 'Entrega al aeropuerto', status: 'Completado', hora: '10:30 AM', destino: 'Aeropuerto JFK'), /* ... */ ]),
-    HistorialPedido(id: '002', propietario: 'María López', checkpoints: [ Checkpoint(nombre: 'Entrega al aeropuerto', status: 'Completado', hora: '9:45 AM', destino: 'Aeropuerto CDMX'), /* ... */ ]),
+    HistorialPedido(id: '001', propietario: 'Carlos Pérez', checkpoints: [
+      Checkpoint(
+          nombre: 'Entrega al aeropuerto',
+          status: 'Completado',
+          hora: '10:30 AM',
+          destino: 'Aeropuerto JFK'), /* ... */
+    ]),
+    HistorialPedido(id: '002', propietario: 'María López', checkpoints: [
+      Checkpoint(
+          nombre: 'Entrega al aeropuerto',
+          status: 'Completado',
+          hora: '9:45 AM',
+          destino: 'Aeropuerto CDMX'), /* ... */
+    ]),
     // ... más datos
   ];
 
@@ -58,7 +72,8 @@ class _PaginaHistorialState extends State<PaginaHistorial> {
         filteredPedidos = historialPedidos;
       } else {
         filteredPedidos = historialPedidos
-            .where((pedido) => pedido.id.toLowerCase().contains(query.toLowerCase()))
+            .where((pedido) =>
+                pedido.id.toLowerCase().contains(query.toLowerCase()))
             .toList();
       }
     });
@@ -115,18 +130,22 @@ class _PaginaHistorialState extends State<PaginaHistorial> {
                             // Usando la traducción
                             title: Text(
                               localizations.orderId(pedido.id),
-                              style: const TextStyle(fontWeight: FontWeight.bold),
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold),
                             ),
                             // Usando la traducción
-                            subtitle: Text(localizations.owner(pedido.propietario)),
+                            subtitle:
+                                Text(localizations.owner(pedido.propietario)),
                             children: [
                               const Divider(),
                               ...pedido.checkpoints.map((cp) {
                                 return ListTile(
-                                  leading: Icon(Icons.flag, color: _getStatusColor(cp.status)),
+                                  leading: Icon(Icons.flag,
+                                      color: _getStatusColor(cp.status)),
                                   title: Text(cp.nombre),
                                   subtitle: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text('Hora: ${cp.hora}'),
                                       Text('Destino: ${cp.destino}'),

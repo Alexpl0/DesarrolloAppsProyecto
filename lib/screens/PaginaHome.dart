@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:sensor_bluetooth_app/l10n/app_localizations.dart'
+    show AppLocalizations;
 import 'package:sensor_bluetooth_app/main.dart'; // Importamos AppState para el selector de idioma
 import 'package:sensor_bluetooth_app/screens/DeviceSelectionScreen.dart';
 import 'package:sensor_bluetooth_app/screens/PaginaEnvios.dart';
@@ -8,7 +10,7 @@ import 'package:sensor_bluetooth_app/screens/PaginaHistorial.dart';
 import 'package:sensor_bluetooth_app/screens/PaginaStatus.dart';
 import 'package:sensor_bluetooth_app/utils/assets.dart';
 import 'package:sensor_bluetooth_app/services/notification_service.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart'; // Importamos las traducciones
+//import 'package:flutter_gen/gen_l10n/app_localizations.dart'; // Importamos las traducciones
 
 // --- MODELO Y DATOS DE EJEMPLO ---
 class Envio {

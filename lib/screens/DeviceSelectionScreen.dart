@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:sensor_bluetooth_app/l10n/app_localizations.dart'
+    show AppLocalizations;
 import 'package:sensor_bluetooth_app/screens/SensorDataScreen.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart'; // Importamos las traducciones
+//import 'package:flutter_gen/gen_l10n/app_localizations.dart'; // Importamos las traducciones
 
 class DeviceSelectionScreen extends StatefulWidget {
   const DeviceSelectionScreen({super.key});
